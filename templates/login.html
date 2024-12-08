@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block  body %}
+	<h1>Connexion</h1>
+
+	<form action="/login" method="POST">
+		<input type="text" autocomplete="off" placeholder="nom" name="nom">
+		<input type="password" autocomplete="off"  name="pwd">
+		<button type="submit">login</button>
+	</form>
+
+	{% with messages = get_flashed_messages() %} 
+		{% for m in messages %}
+			<output>{{m}}</output>
+		{% endfor %}
+	{% endwith %}
+	
+
+{% endblock %}
