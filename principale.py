@@ -14,6 +14,9 @@ class Mobile:
 		self.ram = ram 
 		self.mem = mem
 
+	def __str__(self):
+		return "Mobile(name=%s, price=%d, frequency=%d, RAM=%d, memory=%d)"%(self.name,self.price,self.freq,self.ram, self.mem	)
+
 
 mobile_list = [
 	Mobile( "Pixel", 15, 20, 16, 64),
@@ -38,6 +41,20 @@ def voiture():
 @app.route("/mobiles")
 def mobiles():
 	return render_template('mobiles.html',mobiles=mobile_list)
+
+@app.route("/mobiles/add", methods=['GET','POST','PUT'])
+def addmobile():
+	if request.method == 'POST':
+		try:
+			m = Mobile(request.form['nom'],request.form['price'],request.form['freq'],request.form['ram'],request.form['memory'] )
+			mobile_list.append(m)
+			return redirect(url_for("mobiles"))
+		except KeyError as ke:
+			return render_template('addmobile.html')
+	else:
+		return render_template('addmobile.html')
+ 
+
 
 @app.route("/mobile/<name>")
 def mobile(name):

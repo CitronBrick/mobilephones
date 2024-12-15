@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block  body %}
+	<h1>Connexion</h1>
+
+	<form action="/mobiles/add" method="POST">
+		<label for="nom">Name: <input type="text" id="nom" autocomplete="off" placeholder="nom" name="nom" required> </label>
+		<label for="price">Price: <input type="number" id="price" autocomplete="off" name="price" required>USD</label>
+		<label for="frequency">Frequency: <input id="frequency" type="number" autocomplete="off" name="freq" required>GHz</label>
+		<label for="ram">RAM: <input type="number" id="ram" autocomplete="off" name="ram" min="8" required>Gb</label>
+		<lable for="memory">Memory: <input type="number" id="memory" autocomplete="off" name="memory" min="8" required>Gb</lable>
+		<button type="submit">Add mobile</button>
+	</form>
+
+	{% with messages = get_flashed_messages() %} 
+		{% for m in messages %}
+			<output>{{m}}</output>
+		{% endfor %}
+	{% endwith %}
+
+	<style>
+		label { display:block; margin: 5px; }
+	
+
+{% endblock %}
